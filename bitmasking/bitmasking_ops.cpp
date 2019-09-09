@@ -36,12 +36,20 @@ int setIthBit0(int n, int i){
     return n&mask;
 }
 bool isEven(int n){
-    return n&1==1?0:1; //if 0th bit is a setbit then no is odd else even
+    return (n&1)==1?0:1; //if 0th bit is a setbit then no is odd else even
+}
+void XORswap(int a, int b){
+    //NOTE: This is a call by value function. For call by reference we need to allocate the const values a variable [to refer it via pointers]
+    a=a^b;
+    b=b^a;  //Same as a^b : XOR holds commutative property (as well as associative property)
+    a=a^b;
+    cout<<a<<" "<<b;
 }
 int main(){
     int n, i;
     cin>>n>>i;
     //cout<<getSetBits(n)<<" "<<getSetBitsFast(n);
-    cout<<setIthBit0(n, i);
+    cout<<setIthBit0(n, i)<<endl;
+    XORswap(n, n+1);
     return 0;
 }
