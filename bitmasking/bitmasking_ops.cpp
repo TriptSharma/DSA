@@ -21,9 +21,27 @@ int getSetBitsFast(int n){
     }
     return count;
 }
+int getIthBit(int n, int i){
+    //1 0 1 get bit at index 2 (from rhs)
+    //NOTE: (n&(1<<i))==1 wont work bcoz the int value will oly be equal if (0th bit of n)==1 {as the returned value is translated to int}
+    return (n&(1<<i))!=0 ? 1:0;
+}
+int setIthBit(int n, int i){
+    //set ith bit to 1
+    return n|(1<<i);
+}
+int setIthBit0(int n, int i){
+    int mask=1<<i;
+    mask=~mask;
+    return n&mask;
+}
+bool isEven(int n){
+    return n&1==1?0:1; //if 0th bit is a setbit then no is odd else even
+}
 int main(){
-    int n;
-    cin>>n;
-    cout<<getSetBits(n)<<" "<<getSetBitsFast(n);
+    int n, i;
+    cin>>n>>i;
+    //cout<<getSetBits(n)<<" "<<getSetBitsFast(n);
+    cout<<setIthBit0(n, i);
     return 0;
 }
