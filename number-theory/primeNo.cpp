@@ -11,7 +11,7 @@ bool isPrime(int n){
     return true;
 }
 vector<int> isPrimeFast(int n){
-    //Implement Sieve of Eratosthenes
+    //Implement Sieve of Eratosthenes ->TIME COMPLEXITY: O(nlog(logn))
     int arr[n+1]={0};   //Keeps count of visited nodes
     vector<int> v;      //stores prime nos
     if(n<2) return v;
