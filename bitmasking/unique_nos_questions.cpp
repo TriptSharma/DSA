@@ -9,7 +9,7 @@ void uniqueNo_I(int arr[], int n){
         xors^=arr[i];
     cout<<xors<<endl;
 }
-int  getFirstSetBitMask(int n){
+int getFirstSetBitMask(int n){
     int index=0;
     while(n>0){
         if(n&1) break;
