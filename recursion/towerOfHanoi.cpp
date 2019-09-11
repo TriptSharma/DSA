@@ -17,6 +17,6 @@ void towerOfHanoi(int n, char src, char dst, char helper){
 int main(){
     int n;  //no of disks
     cin>>n;
-    void towerOfHanoi(n, "A", "B", "C");
+    towerOfHanoi(n, 'A', 'B', 'C');
     return 0;
 }
