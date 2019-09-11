@@ -4,6 +4,8 @@ using namespace std;
 int getCount(int arr[], int n){
     //uses pigeon hole principle -> TIME COMPLEXITY: O(n)
     //csum=cumulative sum array; cnt=frequency array keeping count of %n
+
+    //NOTE: this can also be done in O(n*n) using cumulative sum only and traversing through the csum array to see of sub-array sum%n==0
     int cnt[n]={0};
     int csum[n], sum=0;
     //cnt[0]=1 init. because the cumulative sum starts from 0 (not included in csum array, therefore manually added in the start)
