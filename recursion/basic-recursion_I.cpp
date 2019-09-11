@@ -15,7 +15,7 @@ bool isSorted(int *arr, int n){
 void printAscNoob(int n, int i){
     if(i>n) return;
     cout<<i<<" ";
-    printAsc(n,i+1);
+    printAscNoob(n,i+1);
 }
 void printAsc(int n){
     if(n==0) return;
@@ -27,13 +27,23 @@ void printDesc(int n){
     cout<<n<<" ";
     printDesc(n-1);
 }
+int linearSearch(int *arr, int i, int n, int k){
+    //print index of key if found else -1;
+    if(n==0) return -1;
+    if(arr[0]==k) return i;
+    return linearSearch(arr+1, i+1, n-1, k);
+}
 int main(){
     int n1, n2;
     cin>>n1>>n2;
     int arr[n1];
     for(int i=0;i<n1;i++) cin>>arr[i];
-    cout<<isSorted(arr,n1);
-    printAsc(n2);
-    cout<<endl;
-    printDesc(n2);
+    
+    cout<<linearSearch(arr, 0, n1, n2);     //let n1=size of arr, n2=key
+    
+    // cout<<isSorted(arr,n1);
+    
+    // printAsc(n2);
+    // cout<<endl;
+    // printDesc(n2);
 }
