@@ -15,5 +15,6 @@ void printSubSeq(string s, int n, string out){
 int main(){
     string str;
     cin>>str;
-    printSubSeq(str)
+    printSubSeq(str,0,"");
+    return 0
 }
