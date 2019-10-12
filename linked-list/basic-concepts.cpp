@@ -28,12 +28,18 @@ Node *insertAtEnd(int data, Node* head){
     temp->next = end;
     return head;
 }
-Node *insertInMiddle(int data, Node* head, int pos){
+Node *insertInMiddle(int data, Node* &head, int pos){
     //pos = required pos starting from 0
     Node *n = createNode(data);
     Node *temp = head;
     int currpos=0;
-    while(currpos!=pos-1){
+    
+    if(head==NULL||pos==0){
+        insertAtHead(data, head);
+        return head;
+    }
+
+    while(currpos!=pos-1 && temp->next!=NULL){
         temp=temp->next;
         currpos++;
     }
