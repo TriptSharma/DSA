@@ -41,6 +41,36 @@ Node *insertInMiddle(int data, Node* head, int pos){
     temp->next = n;
     return head;
 }
+
+
+//DELETION FUNCTIONS
+Node* deletionAtHead(Node * &head){
+    Node* temp =head;
+    head = head->next;
+    delete temp;
+    return head;
+}
+Node* deletionAtEnd(Node *head){
+    Node *dummy, *temp =head;
+    while(temp->next->next!=NULL)
+        temp=temp->next;
+    dummy=temp->next;
+    temp->next =NULL;
+    delete dummy;
+    return head;
+}
+Node* deletionInMiddle(int pos, Node* head){
+    int currpos=0;
+    Node *dummy, *temp = head;
+    while(currpos!=pos-1){
+        temp=temp->next;
+        currpos++;
+    }
+    dummy = temp->next;
+    temp->next = dummy->next;
+    delete dummy;
+}
+
 void print(Node* head){
     Node* temp=head;
     while(temp!=NULL){
@@ -49,13 +79,27 @@ void print(Node* head){
     }
     cout<<endl;
 }
+
 int main(){
+    //creation
     Node* head = createNode();
-    print(head);
+    // print(head);
+    
+    //insertion
     insertAtEnd(15, head);
-    print(head);
+    // print(head);
     insertAtHead(1, head);
-    print(head);
+    // print(head);
     insertInMiddle(23, head, 1);
+    insertInMiddle(2, head, 1);
+    insertInMiddle(5, head, 4);
+    print(head);
+
+    //deletion
+    deletionAtEnd(head);
+    print(head);
+    deletionAtHead(head);
+    print(head);
+    deletionInMiddle(2, head);
     print(head);
 }
