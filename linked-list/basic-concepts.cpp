@@ -71,6 +71,25 @@ Node* deletionInMiddle(int pos, Node* head){
     delete dummy;
 }
 
+//search
+int searchRecursive(int data, int startpos, Node* head){
+    if(head==NULL)
+        return -1;
+    if(data==head->data)
+        return  startpos;
+    searchRecursive(data, startpos+1, head->next);
+}
+int searchIterative(int data, Node * temp){
+    int curpos = 0;
+    while(temp!=NULL){
+        if(temp->data==data)
+            return curpos;
+        temp=temp->next;
+        curpos++;
+    }
+    return -1;
+}
+
 void print(Node* head){
     Node* temp=head;
     while(temp!=NULL){
@@ -97,9 +116,15 @@ int main(){
 
     //deletion
     deletionAtEnd(head);
-    print(head);
+    // print(head);
     deletionAtHead(head);
+    // print(head);
+    //deletionInMiddle(2, head);
     print(head);
-    deletionInMiddle(2, head);
-    print(head);
+
+    //search
+    cout<<searchRecursive(23, 0, head)<<endl;
+    cout<<searchRecursive(2, 0, head)<<endl;
+    cout<<searchIterative(23, head)<<endl;
+    cout<<searchIterative(15, head)<<endl;
 }
