@@ -7,8 +7,13 @@ struct Node{
 };
 
 Node* insertAtBack(int data, Node* &head){
-    Node *temp=head, *t = new Node;
+    Node *t = new Node;
     t->data= data;
+    if(head==NULL){
+        head=t;
+        return head;
+    }
+    Node *temp=head;
     while(temp->next!=NULL) temp=temp->next;
     temp->next = t;
     return head;
@@ -17,7 +22,7 @@ Node* insertAtBack(int data, Node* &head){
 void buildLinkedList(Node* &head){
     int data;
     cin>>data;
-    while(data==-1){
+    while(data!=-1){
         insertAtBack(data, head);
         cin>>data;
     }
