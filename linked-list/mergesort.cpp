@@ -56,11 +56,44 @@ Node *merge(Node *a, Node*b){
     }
     return c;
 }
+Node* getMid(Node* head){
+    if(head==NULL||head->next==NULL)
+        return head;
+    Node *slow, *fast;
+    slow=head; fast=head->next;
+    while(fast!=NULL&&fast->next!=NULL){
+        fast=fast->next->next;
+        slow=slow->next;
+    }
+    return slow;
+}
+Node *mergesort(Node *head){
+    if(head==NULL||head->next==NULL)
+        return head;
+
+    Node *temp, *first, *second;
+    
+    //get mid and divide the list into two part
+    first=head;
+    temp=getMid(head);
+    second=temp->next;
+    temp->next=NULL;
+
+    //recursive call to break till each list is of 1 element 
+    first = mergesort(first);
+    second = mergesort(second);
+
+    //merge the two lists
+    return merge(first, second);
+}
 int main(){
-    Node *head2, *head1;
+    Node *head2=NULL, *head1=NULL;
     cin>>head1>>head2;
     cout<<head1<<head2;
-    head1 = merge(head1, head2);
-    cout<<head1;
+    // head1 = merge(head1, head2);
+    
+    head1=mergesort(head1);
+    head2=mergesort(head2);
+    cout<<head1<<head2;
 
 }
