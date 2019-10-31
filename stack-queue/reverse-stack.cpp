@@ -25,6 +25,12 @@ public:
     int size(){
         return v1.size();
     }
+    void print(){
+        if(!empty())
+        for(int i=v1.size()-1;i>=0;i--)
+            cout<<v1[i]<<" ";
+        cout<<endl;
+    }
 };
 //reverse using 2 stacks
 template<typename T>
@@ -45,20 +51,24 @@ void reverse2stack(stack<T> &s) {
 
 //reverse using 1 stack
 template <typename T>
-void reverse1stack(stack<T> &s){
-    stack<T> s1;
-    int i=0;
-    T data=s.top();
-    s.pop();
-    while(s.size()-1-i>0){
-        s1.push(s.top());
-        s.pop();
-        i++;
-    }
-    s.push(data);
-    while(!s1.empty()){
-        s.push(s1.top());
+void transfer(stack<T> &s1, stack<T> &s2, int size){
+    for(int i=0;i<size;i++){
+        s2.push(s1.top());
         s1.pop();
+    }
+}
+
+template <typename T>
+void reverse1stack(stack<T> &s){
+    //Take the top element out and transfer other elements till n-i-1 (bcoz for ith iteration i elements have been reversed and '-1' for the current element being reversed) to temp stack where there order is opposite. Add the saved top element to the main stack (this puts it to its right location in the reverse stack). Now transfer from temp stack. Repeat the process till last element.Stack is reversed!
+    stack<T> temp;
+    int n=s.size();
+    for(int i=0;i<s.size();i++){
+        T cur_top = s.top();
+        s.pop();
+        transfer(s,temp,n-i-1);
+        s.push(cur_top);
+        transfer(temp,s,n-i-1);
     }
 }
 int main(){
